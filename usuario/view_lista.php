@@ -21,6 +21,7 @@
                 <td>Nome</td>
                 <td>Idade</td>
                 <td> - </td>
+                <td> - </td>
             </tr>
             <?php foreach($dados as $linha) { ?>
                 <tr>
@@ -30,6 +31,11 @@
                     <td>
                         <a href="index.php?r=usuario&p=excluir&codigo=<?= $linha['id'] ?>" onclick="return confirm('Deseja realmente excluir o registro?')">
                         Excluir
+                        </a>
+                    </td>
+                    <td>
+                        <a href="index.php?r=usuario&p=alterar&codigo=<?= $linha['id'] ?>">
+                            Alterar
                         </a>
                     </td>
                 </tr>

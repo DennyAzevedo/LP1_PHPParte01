@@ -22,8 +22,10 @@
     switch($passo)
     {
         case "cadastrar" :
+            cadastrarUsuario($conexao, $titulo);
             break;
         case "alterar" :
+            alterarUsuario($conexao);
             break;
         case "excluir" :
             $retornoExc = excluirUsuario($conexao);
@@ -61,5 +63,71 @@
         {
             return "";
         }
-    
+    }
+
+    function cadastrarUsuario($conexao, $titulo)
+    {
+        $titulo = "Cadastro de novo usuário";
+        //Verificamos se o formulário foi postado
+        if(isset($_POST['frmCadUsuario']))
+        {
+            $usuario = $_POST['txtNomeUsuario'];
+            $idade = $_POST['txtIdadeUsuario'];
+
+            if(usuario_cadastrar($conexao, $usuario, $idade))
+            {
+                $retornoExc = "Usuario cadastrado com sucesso!";
+                $dados = listarDados($conexao);
+                require("view_lista.php");
+            }
+            else
+            {
+                echo "O cadastro falhou, tente novamente!";
+                require("view_form_cadastro_novo_usuario.php");
+            }
+        }
+        else
+        {
+            //mostrar o formulário de cadastro
+            require("view_form_cadastro_novo_usuario.php");
+        }
+    }
+
+    function alterarUsuario($conexao)
+    {
+        $titulo = "Alterar usuário";
+        if(isset($_POST['idusuario']))
+        {
+            $usuario = $_POST['txtNomeUsuario'];
+            $idade = $_POST['txtIdadeUsuario'];
+            $id = $_POST['idusuario'];
+            if(usuario_alterar($conexao, $usuario, $idade, $id))
+            {
+                $retornoExc = "Usuario alterado com sucesso!";
+                $dados = listarDados($conexao);
+                require("view_lista.php");
+                return false;
+            }
+            else
+            {
+                echo "A alteração falhou, verifique os dados!";
+            }
+        }
+        if(isset($_POST['idusuario']))
+        {
+            $id = $_POST['idusuario'];
+        }
+        else
+        {
+            $id = $_GET['codigo'];
+        }
+        $retorno = usuario_porId($conexao, $id);
+        if(!$retorno)
+        {
+            echo "Falha em buscar o usuario por ID";
+            return false;
+        }
+        $dadosUsuario = mysqli_fetch_row($retorno);
+        $dados = array("id" => $dadosUsuario[0], "nome" => $dadosUsuario[1], "idade" => $dadosUsuario[2]);
+        require("view_form_altera_usuario.php");
     }
