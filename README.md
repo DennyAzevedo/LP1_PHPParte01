@@ -2,7 +2,7 @@
 
 ### Uso principal: PHP - HTML e CSS
 
-Utilizados nas aulas da disciplina de **Linguagem de Programação 1 e 2** 
+Utilizados nas aulas da disciplina de **Linguagem de Programação 1 - LP1** 
 do curso de **Informática para Internet** do Instituto Federal 
 de São Paulo, _campus_ Caraguatatuba.
 
