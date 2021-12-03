@@ -1,6 +1,6 @@
 # Pequenos Projetos para Aula e Treinamento
 
-### Uso principal: PHP - HTML, CSS e JavaScript
+### Uso principal: PHP - HTML e CSS
 
 Utilizados nas aulas da disciplina de **Linguagem de Programação 1 e 2** 
 do curso de **Informática para Internet** do Instituto Federal 
